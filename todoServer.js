@@ -4,6 +4,8 @@ const fs = require('fs');
 app.use(express.json())
 
 
+app.set('view engine', 'ejs');
+
 app.listen(8000, () => {
     console.log(`Server is running on port 8000`);
 });
@@ -43,7 +45,7 @@ app.get("/", function (req, res) {
         return;
     }
 
-    res.sendFile(__dirname + '/todoViews/index.html')
+    res.render('index')
   
 });
 
@@ -112,7 +114,7 @@ app.post('/update', (req, res) => {
 // logic to login in the site 
 
 app.get("/login", function (req, res) {
-    res.sendFile(__dirname + "/todoViews/login.html");
+    res.render('login');
   });
   
   app.post("/login", function (req, res) {
@@ -165,7 +167,7 @@ app.get("/login", function (req, res) {
 //   Creating the User Account
 
 app.get("/accountCreation", function (req, res) {
-    res.sendFile(__dirname + "/todoViews/accountCreation.html");
+    res.render("accountCreation");
   });
   
   app.post('/accountCreation', function(req, res){
@@ -225,6 +227,6 @@ app.get("/accountCreation", function (req, res) {
           return;
       }
   
-      res.sendFile(__dirname + '/todoViews/index.html')
+      res.render('index')
     
   });
