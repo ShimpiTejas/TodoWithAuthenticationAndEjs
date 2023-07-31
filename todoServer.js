@@ -44,8 +44,8 @@ app.get("/", function (req, res) {
         res.redirect('/login');
         return;
     }
-
-    res.render('index')
+    console.log(req.session.username);
+    res.render('index', {username: req.session.username});
   
 });
 
@@ -118,8 +118,9 @@ app.get("/login", function (req, res) {
   });
   
   app.post("/login", function (req, res) {
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.body.username ;
+    req.session.username = username;
+    const password = req.body.password ;
   
     console.log(username, password);
   
@@ -226,7 +227,8 @@ app.get("/accountCreation", function (req, res) {
           res.redirect('/login');
           return;
       }
-  
-      res.render('index')
+      console.log(req.session.username);
+
+      res.render('index', {username: req.session.username})
     
   });
